@@ -25,19 +25,8 @@
       border-radius: 12px;
       margin: 5px 0;
     }
-    .message-video {
-      width: 200px;
-      height: 350px;
-      border-radius: 12px;
-      background-color: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      margin: 5px 0;
-    }
     .chat-bg {
-      background-image: url('https://web.whatsapp.com/img/bg-chat-tile-dark_a4be512e7195b6b733d9110b408f075d.png');
+      background-image: url(https://wa.me/5573991573614?text=Cheguei%20meu%20amor%2C%20Quero%20seus%20conte%C3%BAdos.%E2%9D%A4%EF%B8%8F%F0%9F%AB%A3);
       opacity: 0.06;
       position: absolute;
       top: 0;
@@ -54,7 +43,7 @@
     <div class="flex items-center p-3 bg-emerald-700 text-white">
       <div class="flex items-center">
         <i class="fas fa-arrow-left mr-3 text-lg"></i>
-        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full object-cover border-2 border-white" alt="Bianca Oliveira">
+        <img src="https://i.ibb.co/Q732h5xv/Captura-de-tela-2025-06-02-201808.png" class="w-10 h-10 rounded-full object-cover border-2 border-white" alt="Bianca Oliveira">
       </div>
       <div class="ml-3 flex-1">
         <h1 class="font-semibold">Bianca Oliveira</h1>
@@ -65,13 +54,12 @@
         <i class="fas fa-ellipsis-v"></i>
       </div>
     </div>
-    
+
     <!-- Chat Body -->
     <div class="flex-1 overflow-y-auto p-4 bg-gray-100 relative" id="chat-body">
       <div class="chat-bg"></div>
-      <!-- Messages will be inserted here by JavaScript -->
     </div>
-    
+
     <!-- Input Area -->
     <div class="p-3 bg-gray-50 border-t border-gray-200">
       <div class="flex items-center">
@@ -86,69 +74,63 @@
   <script>
     const chatBody = document.getElementById('chat-body');
     const messageInput = document.getElementById('message-input');
-    
-    // Helper function to format time
+
     function getCurrentTime() {
       const now = new Date();
       return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
-    
-    // Add message to chat
+
     function addMessage(text, type = 'received', isMedia = false) {
       const msgContainer = document.createElement('div');
       msgContainer.className = `flex ${type === 'sent' ? 'justify-end' : 'justify-start'} mb-3`;
-      
+
       const msgBubble = document.createElement('div');
       msgBubble.className = `max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${type === 'sent' ? 'bg-emerald-100 rounded-tr-none' : 'bg-white rounded-tl-none'}`;
-      
+
       if (isMedia) {
-        if (text.includes('Imagem')) {
-          const imgNum = text.match(/\d+/)[0];
-          const img = document.createElement('div');
-          img.className = 'message-image bg-gray-200 flex items-center justify-center text-gray-500';
-          img.innerHTML = `
-            <div class="text-center p-4">
-              <i class="fas fa-image text-3xl mb-2"></i>
-              <p>Imagem ${imgNum}</p>
-            </div>
-          `;
+        if (text.includes('Imagem 1')) {
+          const img = document.createElement('img');
+          img.src = 'https://i.ibb.co/hxZKHpxT/Design-sem-nome-1.png';
+          img.className = 'message-image';
           msgBubble.appendChild(img);
-        } else if (text.includes('Vídeo')) {
-          const video = document.createElement('div');
-          video.className = 'message-video';
-          video.innerHTML = `
-            <div class="text-center">
-              <i class="fas fa-play-circle text-4xl mb-2"></i>
-              <p>Vídeo exclusivo</p>
+        } else if (text.includes('Imagem 2')) {
+          const img = document.createElement('img');
+          img.src = 'https://i.ibb.co/ZRvWsZC7/Captura-de-tela-2025-05-31-122548.png';
+          img.className = 'message-image';
+          msgBubble.appendChild(img);
+        } else if (text.includes('Vídeo enviado')) {
+          const videoWrapper = document.createElement('div');
+          videoWrapper.innerHTML = `
+            <div style="padding:177.92% 0 0 0;position:relative;width:200px;height:350px;">
+              <iframe src="https://player.vimeo.com/video/1094224399?h=dae0eee7c8&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Sentada Gostosa"></iframe>
             </div>
           `;
-          msgBubble.appendChild(video);
+          msgBubble.appendChild(videoWrapper);
         }
       } else {
         msgBubble.textContent = text;
       }
-      
+
       const time = document.createElement('div');
       time.className = 'text-xs text-gray-500 mt-1 flex justify-end items-center';
       time.innerHTML = `
         ${getCurrentTime()}
         ${type === 'sent' ? '<i class="fas fa-check ml-1 text-blue-500"></i>' : ''}
       `;
-      
+
       msgBubble.appendChild(time);
       msgContainer.appendChild(msgBubble);
       chatBody.appendChild(msgContainer);
       chatBody.scrollTop = chatBody.scrollHeight;
     }
-    
-    // Show typing indicator
+
     function showTyping(callback) {
       const typingContainer = document.createElement('div');
       typingContainer.className = 'flex justify-start mb-3';
-      
+
       const typingBubble = document.createElement('div');
       typingBubble.className = 'bg-white px-4 py-2 rounded-lg rounded-tl-none';
-      
+
       const typingIndicator = document.createElement('div');
       typingIndicator.className = 'typing-indicator flex space-x-1';
       typingIndicator.innerHTML = `
@@ -156,28 +138,27 @@
         <span class="inline-block w-2 h-2 bg-gray-500 rounded-full"></span>
         <span class="inline-block w-2 h-2 bg-gray-500 rounded-full"></span>
       `;
-      
+
       typingBubble.appendChild(typingIndicator);
       typingContainer.appendChild(typingBubble);
       chatBody.appendChild(typingContainer);
       chatBody.scrollTop = chatBody.scrollHeight;
-      
+
       setTimeout(() => {
         typingContainer.remove();
         callback();
       }, 2000);
     }
-    
-    // Add button options
+
     function addButtons(options) {
       const buttonContainer = document.createElement('div');
       buttonContainer.className = 'flex flex-wrap gap-2 mb-3';
-      
+
       options.forEach(option => {
         const button = document.createElement('button');
         button.className = 'px-4 py-2 bg-emerald-600 text-white rounded-full text-sm font-medium hover:bg-emerald-700 transition';
         button.textContent = option.text;
-        
+
         if (option.link) {
           const link = document.createElement('a');
           link.href = option.link;
@@ -187,28 +168,27 @@
           button.innerHTML = '';
           button.appendChild(link);
         }
-        
+
         button.addEventListener('click', () => {
           addMessage(option.text, 'sent');
           buttonContainer.remove();
           if (option.callback) option.callback(option.text);
         });
-        
+
         buttonContainer.appendChild(button);
       });
-      
+
       chatBody.appendChild(buttonContainer);
       chatBody.scrollTop = chatBody.scrollHeight;
     }
-    
-    // Chat flow functions
+
     function startChat() {
       showTyping(() => {
         addMessage('Oi! Tudo bem? Me fala seu nome pra gente continuar nossa conversa.');
-        
+
         messageInput.disabled = false;
         messageInput.focus();
-        
+
         const handleNameInput = (e) => {
           if (e.key === 'Enter' && messageInput.value.trim() !== '') {
             const nome = messageInput.value.trim();
@@ -218,21 +198,21 @@
             fluxoDepoisDoNome(nome);
           }
         };
-        
+
         messageInput.addEventListener('keypress', handleNameInput);
       });
     }
-    
+
     function fluxoDepoisDoNome(nome) {
       showTyping(() => {
         addMessage(`Certo, ${nome}! Deixa eu te explicar, esse ainda não é meu WhatsApp pois só passo ele pra quem realmente me interessa, tá bom?`);
-        
+
         showTyping(() => {
           addMessage('Eu trabalho com conteúdo adulto, vídeos bem safadinhos e meu conteúdo é super exclusivo, não está em nenhum site.');
-          
+
           showTyping(() => {
             addMessage('Mas então, meu bem... você gosta de mulher?');
-            
+
             addButtons([
               { text: 'Bem safadinha', callback: fluxoDepoisDaEscolha1 },
               { text: 'Comportada', callback: fluxoDepoisDaEscolha1 }
@@ -241,21 +221,20 @@
         });
       });
     }
-    
+
     function fluxoDepoisDaEscolha1(escolha) {
       showTyping(() => {
         addMessage(`Hummm... Confesso que sou bem ${escolha.toLowerCase()} 🫣 Vou te mostrar só um pouquinho do meu mundo...`);
-        
+
         showTyping(() => {
           addMessage('[Imagem 1]', 'received', true);
           showTyping(() => {
             addMessage('[Imagem 2]', 'received', true);
             showTyping(() => {
               addMessage('[Vídeo enviado]', 'received', true);
-              
               showTyping(() => {
                 addMessage('Então... o que achou? Sou bem safadinha ou não? 😍');
-                
+
                 addButtons([
                   { text: 'Sim, quero mais', callback: fluxoDepoisDaEscolha2 },
                   { text: 'Não gostei', callback: fluxoDepoisDaEscolha2 }
@@ -266,20 +245,20 @@
         });
       });
     }
-    
+
     function fluxoDepoisDaEscolha2(resposta) {
       showTyping(() => {
         if (resposta.includes('Sim')) {
           addMessage('Que delícia, meu amor 😋... Meu bem, eu não posso passar disso por aqui. Como falei, meu conteúdo é exclusivo, só libero para pagantes.');
-          
+
           showTyping(() => {
             addMessage('E não é nada de outro mundo, Meu pacote inicial custa R$10,00, tenho chamada de vídeo e outros serviços tambem. Quer ter acesso a mim e aos meus conteúdos?');
-            
+
             addButtons([
-              { 
-                text: 'Claro! Já tô daquele jeito', 
+              {
+                text: 'Claro! Já tô daquele jeito',
                 link: 'https://api.whatsapp.com/send?phone=SEUNUMEROAQUI',
-                callback: fluxoFinal 
+                callback: fluxoFinal
               },
               { text: 'Não quero', callback: fluxoFinal }
             ]);
@@ -289,7 +268,7 @@
         }
       });
     }
-    
+
     function fluxoFinal(escolhaFinal) {
       showTyping(() => {
         if (escolhaFinal.includes('Não')) {
@@ -300,10 +279,8 @@
         messageInput.disabled = true;
       });
     }
-    
-    // Start chat when page loads
+
     window.onload = startChat;
   </script>
-
 </body>
 </html>
