@@ -14,7 +14,6 @@
       height: 100vh;
       margin: 0;
     }
-
     .container {
       background-color: #ffffff;
       border-radius: 12px;
@@ -25,12 +24,10 @@
       text-align: center;
       position: relative;
     }
-
     .profile {
       position: relative;
       display: inline-block;
     }
-
     .profile img {
       width: 120px;
       height: 120px;
@@ -38,7 +35,6 @@
       object-fit: cover;
       border: 3px solid #25D366;
     }
-
     .online-indicator {
       position: absolute;
       bottom: 5px;
@@ -49,18 +45,15 @@
       border: 2px solid #ffffff;
       border-radius: 50%;
     }
-
     h2 {
       margin: 15px 0 5px 0;
       color: #075E54;
     }
-
     p {
       margin: 5px 0;
       color: #555;
       font-size: 15px;
     }
-
     .btn-whatsapp {
       display: inline-block;
       background-color: #25D366;
@@ -76,17 +69,14 @@
       width: 100%;
       max-width: 300px;
     }
-
     .btn-whatsapp:hover {
       background-color: #128C7E;
     }
-
     @media (max-width: 480px) {
       .profile img {
         width: 100px;
         height: 100px;
       }
-
       .online-indicator {
         width: 16px;
         height: 16px;
@@ -113,23 +103,15 @@
 
   <script>
     const numerosWhatsApp = [
-      '5573991573614',
-      '5573991573615'
+      '5573991573615',  // Número 1
+      '5573991573614'   // Número 2
     ];
 
     function redirecionarWhatsApp() {
-      let index = localStorage.getItem('whatsAppIndex');
-      if (index === null) {
-        index = 0;
-      } else {
-        index = (parseInt(index) + 1) % numerosWhatsApp.length;
-      }
-      localStorage.setItem('whatsAppIndex', index);
-
+      const index = Math.floor(Math.random() * numerosWhatsApp.length);
       const numero = numerosWhatsApp[index];
-      const mensagem = encodeURIComponent("Olá, Bianca! Quero falar com você.");
+      const mensagem = encodeURIComponent("Olá, Bianca! Como tenho acesso ao seu conteudo.");
       const link = `https://wa.me/${numero}?text=${mensagem}`;
-
       window.location.href = link;
     }
   </script>
