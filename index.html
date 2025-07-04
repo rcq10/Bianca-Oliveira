@@ -104,14 +104,14 @@
   <script>
     const numerosWhatsApp = [
       '5573988009875',  // Número 1
-      '5573991573615',  // Número 2
+      '5573988013871',  // Número 2
       
     ];
 
     function redirecionarWhatsApp() {
       const index = Math.floor(Math.random() * numerosWhatsApp.length);
       const numero = numerosWhatsApp[index];
-      const mensagem = encodeURIComponent("Olá, Bianca! Como tenho acesso ao seu conteudo.");
+      const mensagem = encodeURIComponent("Olá, Amor! Como tenho acesso ao seu conteudo.");
       const link = `https://wa.me/${numero}?text=${mensagem}`;
       window.location.href = link;
     }
