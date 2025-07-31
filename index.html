@@ -13,14 +13,10 @@
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1288649356154285');
 
-  // Correção: dispara só quando a página terminar de carregar
-  <script>
+  // dispara apenas após o carregamento completo
   window.addEventListener('load', function() {
-    console.log("Pixel carregado - disparando PageView");
     fbq('track', 'PageView');
   });
-</script>
-
 </script>
 <noscript>
   <img height="1" width="1" style="display:none"
