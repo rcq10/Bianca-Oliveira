@@ -1,6 +1,157 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1288649356154285');
+
+  // Correção: dispara só quando a página terminar de carregar
+  <script>
+  window.addEventListener('load', function() {
+    console.log("Pixel carregado - disparando PageView");
+    fbq('track', 'PageView');
+  });
+</script>
+
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=1288649356154285&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bianca Oliveira - WhatsApp</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e5ddd5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 20px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+    .profile {
+      position: relative;
+      display: inline-block;
+    }
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #25D366;
+    }
+    .online-indicator {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 20px;
+      height: 20px;
+      background-color: #25D366;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+    h2 {
+      margin: 15px 0 5px 0;
+      color: #075E54;
+    }
+    p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 15px;
+    }
+    .btn-whatsapp {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      width: 100%;
+      max-width: 300px;
+    }
+    .btn-whatsapp:hover {
+      background-color: #128C7E;
+    }
+    @media (max-width: 480px) {
+      .profile img {
+        width: 100px;
+        height: 100px;
+      }
+      .online-indicator {
+        width: 16px;
+        height: 16px;
+        bottom: 3px;
+        right: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="profile">
+      <img src="https://i.ibb.co/Q732h5xv/Captura-de-tela-2025-06-02-201808.png" alt="Bianca Oliveira">
+      <div class="online-indicator"></div>
+    </div>
+
+    <h2>Bianca Oliveira</h2>
+    <p>22 anos</p>
+    <p>Bahia / São Paulo</p>
+
+    <button class="btn-whatsapp" onclick="redirecionarWhatsApp()">Falar no WhatsApp</button>
+  </div>
+
+  <script>
+    const numerosWhatsApp = [
+      
+    '5573988023534',  // Número 1
+     
+      
+      
+      
+    ];
+
+    function redirecionarWhatsApp() {
+      const index = Math.floor(Math.random() * numerosWhatsApp.length);
+      const numero = numerosWhatsApp[index];
+      const mensagem = encodeURIComponent("Olá, Amor! Como tenho acesso ao seu conteudo.");
+      const link = `https://wa.me/${numero}?text=${mensagem}`;
+      window.location.href = link;
+    }
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
   <!-- Meta Pixel Facebook -->
   <script>
     !function(f,b,e,v,n,t,s)
