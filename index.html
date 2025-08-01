@@ -62,10 +62,12 @@
   <div class="check" id="check">✔</div>
 
   <script>
-    // CAPTURA E SALVA O fbclid
+    // CAPTURA OU REUTILIZA O fbclid
     const urlParams = new URLSearchParams(window.location.search);
-    const fbclid = urlParams.get('fbclid');
-    if (fbclid) {
+    let fbclid = urlParams.get('fbclid');
+    if (!fbclid) {
+      fbclid = localStorage.getItem('fbclid');
+    } else {
       localStorage.setItem('fbclid', fbclid);
     }
 
@@ -77,8 +79,8 @@
     const proximoIndice = (indice + 1) % numeros.length;
     localStorage.setItem('indiceNumero', proximoIndice);
 
-    const mensagem = encodeURIComponent("Olá! Amor quero ter acesso ao seu conteudo.");
-    const link = `https://wa.me/${numeroAtual}?text=${mensagem}`;
+    const mensagem = encodeURIComponent("Olá! Amor quero ter acesso ao seu conteúdo.");
+    const link = `https://wa.me/${numeroAtual}?text=${mensagem}${fbclid ? `&fbclid=${fbclid}` : ''}`;
 
     let segundos = 3;
     const contador = document.getElementById("contador");
