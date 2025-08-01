@@ -11,6 +11,7 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
+    
     fbq('init', '1288649356154285');
     window.addEventListener('load', function() {
       fbq('track', 'PageView');
@@ -61,8 +62,14 @@
   <div class="check" id="check">✔</div>
 
   <script>
-    const numeros = ['5573988045498'];
+    // CAPTURA E SALVA O fbclid
+    const urlParams = new URLSearchParams(window.location.search);
+    const fbclid = urlParams.get('fbclid');
+    if (fbclid) {
+      localStorage.setItem('fbclid', fbclid);
+    }
 
+    const numeros = ['5573988045498'];
     let indice = localStorage.getItem('indiceNumero');
     indice = indice ? parseInt(indice) : 0;
 
@@ -70,9 +77,7 @@
     const proximoIndice = (indice + 1) % numeros.length;
     localStorage.setItem('indiceNumero', proximoIndice);
 
-    // Defina aqui sua mensagem personalizada (ou deixe em branco)
     const mensagem = encodeURIComponent("Olá! Amor quero ter acesso ao seu conteudo.");
-
     const link = `https://wa.me/${numeroAtual}?text=${mensagem}`;
 
     let segundos = 3;
