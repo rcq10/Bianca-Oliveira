@@ -1,65 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    
-    // 👇 USE SEU PIXEL ID CORRETO AQUI
-    fbq('init', '1124756639573111'); 
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1124756639573111&ev=PageView&noscript=1"/>
-  </noscript>
-    <meta charset="UTF-8">
-  <title>Redirecionando para o WhatsApp...</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { background-color: #075E54; color: #FFFFFF; font-family: 'Segoe UI', 'Roboto', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; }
-    h1 { font-size: 2rem; margin-bottom: 1rem; }
-    .contador { font-size: 3rem; font-weight: bold; color: #25D366; margin-top: 20px; }
-    .check { font-size: 4rem; color: #25D366; display: none; }
-  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+      };
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    fbq('init', '1124756639573111');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1124756639573111&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <meta charset="UTF-8">
+  <title>Redirecionando para o WhatsApp...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #075E54;
+      color: #FFFFFF;
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contador {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #25D366;
+      margin-top: 20px;
+    }
+    .check {
+      font-size: 4rem;
+      color: #25D366;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>🎊Bem-vindo ao meu mundo🎊</h1>
-  <p>Contato liberado em...</p>
-  <div class="contador" id="contador">3</div>
-  <div class="check" id="check">✔</div>
+  <h1>🎊Bem-vindo ao meu mundo🎊</h1>
+  <p>Contato liberado em...</p>
+  <div class="contador" id="contador">3</div>
+  <div class="check" id="check">✔</div>
 
-  <script>
-    // Captura o fbclid da URL e salva para a CAPI e cookies
-    const urlParams = new URLSearchParams(window.location.search);
-    const fbclid = urlParams.get('fbclid');
-    if (fbclid) {
-      localStorage.setItem('fbclid', fbclid); // Essencial para a página de obrigado
-    }
+  <script>
+    // Salva o fbclid como cookie _fbc para a API de conversão
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const fbclid = params.get('fbclid');
+      if (fbclid) {
+        const timestamp = Math.floor(Date.now() / 1000);
+        const fbcValue = `fb.1.${timestamp}.${fbclid}`;
+        document.cookie = `_fbc=${fbcValue}; path=/; domain=${location.hostname}; SameSite=Lax`;
+        localStorage.setItem('fbclid', fbclid);
+      }
+    })();
 
-    const numeros = ['73988023534'];
-    let indice = localStorage.getItem('indiceNumero');
-    indice = indice ? parseInt(indice) : 0;
-    const numeroAtual = numeros[indice];
-    const proximoIndice = (indice + 1) % numeros.length;
-    localStorage.setItem('indiceNumero', proximoIndice);
-    const mensagem = encodeURIComponent("Olá! Amor quero ter acesso ao seu conteúdo.");
+    const numeros = ['73988023534'];
+    let indice = localStorage.getItem('indiceNumero');
+    indice = indice ? parseInt(indice) : 0;
 
-    // ✅ CORREÇÃO: Adicionando o fbclid de volta ao link para redundância
-    const link = `https://wa.me/${numeroAtual}?text=${mensagem}${fbclid ? `&fbclid=${fbclid}` : ''}`;
+    const numeroAtual = numeros[indice];
+    const proximoIndice = (indice + 1) % numeros.length;
+    localStorage.setItem('indiceNumero', proximoIndice);
 
-    let segundos = 3;
-    const contador = document.getElementById("contador");
-    const check = document.getElementById("check");
-    const interval = setInterval(() => {
-      segundos--;
-      if (segundos > 0) {
-        contador.textContent = segundos;
-      } else {
-        clearInterval(interval);
-        contador.style.display = "none";
-        check.style.display = "block";
-        setTimeout(() => { window.location.href = link; }, 1000);
-      }
-    }, 1000);
-  </script>
+    const mensagem = encodeURIComponent("Olá! Amor quero ter acesso ao seu conteúdo.");
+    const link = `https://wa.me/${numeroAtual}?text=${mensagem}`; // ❌ sem fbclid aqui
+
+    let segundos = 3;
+    const contador = document.getElementById("contador");
+    const check = document.getElementById("check");
+
+    const interval = setInterval(() => {
+      segundos--;
+      if (segundos > 0) {
+        contador.textContent = segundos;
+      } else {
+        clearInterval(interval);
+        contador.style.display = "none";
+        check.style.display = "block";
+        setTimeout(() => {
+          window.location.href = link;
+        }, 1000);
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
