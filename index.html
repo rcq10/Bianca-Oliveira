@@ -3,19 +3,21 @@
 <head>
   <!-- Meta Pixel Code -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+      };
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     
     fbq('init', '1288649356154285');
-    window.addEventListener('load', function() {
-      fbq('track', 'PageView');
-    });
+    fbq('track', 'PageView');
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
@@ -56,20 +58,23 @@
   </style>
 </head>
 <body>
-  <h1>🎊Bem vindo ao meu mundo🎊</h1>
+  <h1>🎊Bem-vindo ao meu mundo🎊</h1>
   <p>Contato liberado em...</p>
   <div class="contador" id="contador">3</div>
   <div class="check" id="check">✔</div>
 
   <script>
-    // CAPTURA OU REUTILIZA O fbclid
-    const urlParams = new URLSearchParams(window.location.search);
-    let fbclid = urlParams.get('fbclid');
-    if (!fbclid) {
-      fbclid = localStorage.getItem('fbclid');
-    } else {
-      localStorage.setItem('fbclid', fbclid);
-    }
+    // Salva o fbclid como cookie _fbc para a API de conversão
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const fbclid = params.get('fbclid');
+      if (fbclid) {
+        const timestamp = Math.floor(Date.now() / 1000);
+        const fbcValue = `fb.1.${timestamp}.${fbclid}`;
+        document.cookie = `_fbc=${fbcValue}; path=/; domain=${location.hostname}; SameSite=Lax`;
+        localStorage.setItem('fbclid', fbclid);
+      }
+    })();
 
     const numeros = ['73988023534'];
     let indice = localStorage.getItem('indiceNumero');
@@ -80,7 +85,7 @@
     localStorage.setItem('indiceNumero', proximoIndice);
 
     const mensagem = encodeURIComponent("Olá! Amor quero ter acesso ao seu conteúdo.");
-    const link = `https://wa.me/${numeroAtual}?text=${mensagem}${fbclid ? `&fbclid=${fbclid}` : ''}`;
+    const link = `https://wa.me/${numeroAtual}?text=${mensagem}`; // ❌ sem fbclid aqui
 
     let segundos = 3;
     const contador = document.getElementById("contador");
